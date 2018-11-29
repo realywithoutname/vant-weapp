@@ -1,10 +1,12 @@
 ## NavBar 导航栏
 
 ### 使用指南
-``` javascript
-import { NavBar } from 'vant';
 
-Vue.use(NavBar);
+在 app.json 或 index.json 中引入组件
+```json
+"usingComponents": {
+  "van-nav-bar": "path/to/vant-weapp/dist/nav-bar/index"
+}
 ```
 
 ### 代码演示
@@ -23,16 +25,14 @@ Vue.use(NavBar);
 ```
 
 ```js
-export default {
-  methods: {
-    onClickLeft() {
-      wx.showToast({ title: '点击返回', icon: 'none' });
-    },
-    onClickRight() {
-      wx.showToast({ title: '点击按钮', icon: 'none' });
-    }
+Page({
+  onClickLeft() {
+    wx.showToast({ title: '点击返回', icon: 'none' });
+  },
+  onClickRight() {
+    wx.showToast({ title: '点击按钮', icon: 'none' });
   }
-}
+});
 ```
 
 #### 高级用法
@@ -54,6 +54,7 @@ export default {
 | right-text | 右侧文案 | `String` | `''` |
 | left-arrow | 是否显示左侧箭头 | `Boolean` | `false` |
 | fixed | 是否固定在顶部 | `Boolean` | `false` |
+| border | 是否显示下边框 | `Boolean` | `true` |
 | z-index | 元素 z-index | `Number` | `1` |
 
 ### Slot

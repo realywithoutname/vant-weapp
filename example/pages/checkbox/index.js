@@ -4,6 +4,7 @@ Page({
   data: {
     checkbox1: true,
     checkbox2: true,
+    checkbox3: true,
     list: ['a', 'b', 'c'],
     result: ['a', 'b'],
     result2: [],
@@ -32,5 +33,7 @@ Page({
     const { name } = event.currentTarget.dataset;
     const checkbox = this.selectComponent(`.checkboxes-${name}`);
     checkbox.toggle();
-  }
+  },
+
+  noop() {}
 });

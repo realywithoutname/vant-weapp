@@ -1,7 +1,7 @@
 ## Search 搜索
 
 ### 使用指南
-在 index.json 中引入组件
+在 app.json 或 index.json 中引入组件
 ```json
 "usingComponents": {
   "van-search": "/packages/search/index"
@@ -52,10 +52,14 @@ Search 支持自定义右侧取消按钮，使用名字为 action 的 slot 即�
 | background | 搜索框背景色 | `String` | `#f2f2f2` |
 | show-action | 是否在搜索框右侧显示取消按钮 | `Boolean` | `false` |
 | focus | 获取焦点 | `Boolean` | `false` |
+| error | 是否将输入内容标红 | `Boolean` | `false` |
 | disabled | 是否禁用输入框 | `Boolean` | `false` |
 | readonly | 是否只读 | `Boolean` | `false` |
 | maxlength | 最大输入长度，设置为 -1 的时候不限制最大长度 | `Number` | `-1` |
 | use-action-slot | 是否使用 action slot | `Boolean` | `false` |
+| placeholder | 输入框为空时占位符 | `String` | - |
+| placeholder-style | 指定 placeholder 的样式 | `String` | - |
+| input-align | 输入框内容对齐方式，可选值为 `center` `right` | `String` | `left` |
 
 ### Event
 
@@ -66,6 +70,7 @@ Search 支持自定义右侧取消按钮，使用名字为 action 的 slot 即�
 | bind:cancel | 取消搜索搜索时触发 | - |
 | bind:focus | 输入框聚焦时触发 | - |
 | bind:blur | 输入框失焦时触发 | - |
+| bind:clear | 点击清空控件时触发 | - |
 
 ### Slot
 
@@ -78,6 +83,8 @@ Search 支持自定义右侧取消按钮，使用名字为 action 的 slot 即�
 | 类名 | 说明 |
 |-----------|-----------|
 | custom-class | 根节点样式类 |
+| field-class | 搜索框样式类 |
+| input-class | 输入框样式类 |
 | cancel-class | 取消按钮样式类 |
 
 ### 更新日志

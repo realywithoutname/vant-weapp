@@ -14,61 +14,16 @@
 const PREFIX = 'https://img.yzcdn.cn/vant-weapp/';
 const MAP = {
   index: 'index-201808121630.png',
-  'action-sheet': 'action-sheet-201809071648.png',
-  area: 'area-201809271357.png',
-  badge: 'badge-201808092138.png',
-  button: 'button-201808092138.png',
-  card: 'card-201808092138.png',
   col: 'layout-201808092138.png',
-  cell: 'cell-201808092138.png',
-  dialog: 'dialog-201809071648.png',
-  field: 'field-201808092138.png',
-  icon: 'icon-201808092138.png',
-  loading: 'loading-201808092138.png',
-  'nav-bar': 'nav-bar-201808110751.png',
-  'notice-bar': 'notice-bar-201808092138.png',
-  notify: 'notify-201808112050.png',
-  panel: 'panel-201808092138.png',
-  popup: 'popup-201808092138.png',
-  progress: 'progress-201808232055.png',
-  radio: 'radio_201809271357.png',
-  slider: 'slider-201808221024.png',
-  stepper: 'stepper-201808092138.png',
-  search: 'search-201808092138.png',
-  steps: 'steps-201808092138.png',
-  switch: 'switch-201808092138.png',
-  'switch-cell': 'switch-cell-201808221124.png',
-  'submit-bar': 'submit-bar-a-201809271357.png',
-  tab: 'tab-201809051457.png',
-  tag: 'tag-201808092138.png',
-  tabbar: 'tabbar-201808160922.png',
-  toast: 'toast-201808191046.png',
-  transition: 'transition-20180821.png',
-  'tree-select': 'tree-select-201808092138.png',
-  checkbox: 'checkbox-20180928-1.png'
+  transition: 'transition-20180821.png'
 };
 
 export default {
-  data() {
-    return {
-      currentPage: null
-    };
-  },
-
   computed: {
     image() {
-      if (this.currentPage === null) {
-        return '';
-      }
-      return PREFIX + (MAP[this.currentPage] || MAP.index);
+      const hash = location.hash.slice(1);
+      return PREFIX + (MAP[hash] || MAP.index);
     }
-  },
-
-  created() {
-    window.switchImage = path => {
-      path = path.replace('/', '');
-      this.currentPage = path;
-    };
   }
 };
 </script>

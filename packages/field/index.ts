@@ -9,6 +9,7 @@ VantComponent({
     icon: String,
     label: String,
     error: Boolean,
+    fixed: Boolean,
     focus: Boolean,
     center: Boolean,
     isLink: Boolean,
@@ -22,12 +23,17 @@ VantComponent({
     inputAlign: String,
     customClass: String,
     confirmType: String,
+    confirmHold: Boolean,
     errorMessage: String,
     placeholder: String,
     customStyle: String,
     useIconSlot: Boolean,
     useButtonSlot: Boolean,
     placeholderStyle: String,
+    adjustPosition: {
+      type: Boolean,
+      value: true
+    },
     cursorSpacing: {
       type: Number,
       value: 50
@@ -61,7 +67,7 @@ VantComponent({
         'van-field--error': data.error,
         'van-field__textarea': data.type === 'textarea',
         'van-field__input--disabled': data.disabled,
-        [`van-field--${data.inputAlign}`]: data.inputAlign
+        [`van-field__input--${data.inputAlign}`]: data.inputAlign
       });
     }
   },
@@ -73,25 +79,29 @@ VantComponent({
   methods: {
     onInput(event: Weapp.Event) {
       const { value = '' } = event.detail || {};
-      this.$emit('input', value);
-      this.$emit('change', value);
+
       this.setData({
         value,
         showClear: this.getShowClear(value)
+      }, () => {
+        this.$emit('input', value);
+        this.$emit('change', value);
       });
     },
 
-    onFocus() {
-      this.$emit('focus');
+    onFocus(event: Weapp.Event) {
+      const { value = '', height = 0 } = event.detail || {};
+      this.$emit('focus', { value, height });
       this.focused = true;
       this.setData({
         showClear: this.getShowClear()
       });
     },
 
-    onBlur() {
+    onBlur(event: Weapp.Event) {
+      const { value = '', cursor = 0 } = event.detail || {};
+      this.$emit('blur', { value, cursor });
       this.focused = false;
-      this.$emit('blur');
       this.setData({
         showClear: this.getShowClear()
       });
@@ -112,9 +122,11 @@ VantComponent({
       this.setData({
         value: '',
         showClear: this.getShowClear('')
+      }, () => {
+        this.$emit('input', '');
+        this.$emit('change', '');
+        this.$emit('clear', '');
       });
-      this.$emit('input', '');
-      this.$emit('change', '');
     },
 
     onConfirm() {

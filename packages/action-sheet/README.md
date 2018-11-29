@@ -1,7 +1,7 @@
 ## ActionSheet 上拉菜单
 
 ### 使用指南
-在 index.json 中引入组件
+在 app.json 或 index.json 中引入组件
 ```json
 "usingComponents": {
   "van-action-sheet": "path/to/vant-weapp/dist/action-sheet/index"
@@ -24,37 +24,33 @@
 
 ```javascript
 Page({
-  data() {
-    return {
-      show: false,
-      actions: [
-        {
-          name: '选项'
-        },
-        {
-          name: '分享',
-          subname: '描述信息',
-          openType: 'share'
-        },
-        {
-          loading: true
-        },
-        {
-          name: '禁用选项',
-          disabled: true
-        }
-      ]
-    };
+  data: {
+    show: false,
+    actions: [
+      {
+        name: '选项'
+      },
+      {
+        name: '分享',
+        subname: '描述信息',
+        openType: 'share'
+      },
+      {
+        loading: true
+      },
+      {
+        name: '禁用选项',
+        disabled: true
+      }
+    ]
   },
 
-  methods: {
-    onClose() {
-      this.setData({ show: false });
-    },
+  onClose() {
+    this.setData({ show: false });
+  },
 
-    onSelect(event) {
-      console.log(event.detail);
-    }
+  onSelect(event) {
+    console.log(event.detail);
   }
 });
 ```

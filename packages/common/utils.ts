@@ -7,7 +7,17 @@ function isObj(x: any): boolean {
   return x !== null && (type === 'object' || type === 'function');
 }
 
+function isNumber(value) {
+  return /^\d+$/.test(value);
+}
+
+function isSrc(url) {
+  return /^(https?:)?\/\/|data:image/.test(url);
+}
+
 export {
   isObj,
-  isDef
+  isDef,
+  isSrc,
+  isNumber
 };

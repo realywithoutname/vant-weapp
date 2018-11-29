@@ -2,7 +2,7 @@
 
 ### 使用指南
 
-在 index.json 中引入组件
+在 app.json 或 index.json 中引入组件
 ```json
 "usingComponents": {
   "van-stepper": "path/to/vant-weapp/dist/stepper/index"
@@ -78,3 +78,4 @@
 |-----------|-----------|-----------|
 | 0.0.1 | feature | 新增组件 |
 | 0.2.1 | feature | 支持在原生 form 组件内使用 |
+| 0.3.8 | bugfix | 修复 disabled 状态下仍然可以点击的问题 |

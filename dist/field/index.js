@@ -6,6 +6,7 @@ VantComponent({
     icon: String,
     label: String,
     error: Boolean,
+    fixed: Boolean,
     focus: Boolean,
     center: Boolean,
     isLink: Boolean,
@@ -56,7 +57,7 @@ VantComponent({
         'van-field--error': data.error,
         'van-field__textarea': data.type === 'textarea',
         'van-field__input--disabled': data.disabled,
-        ["van-field--" + data.inputAlign]: data.inputAlign
+        ["van-field__input--" + data.inputAlign]: data.inputAlign
       });
     }
   },
@@ -104,6 +105,7 @@ VantComponent({
       });
       this.$emit('input', '');
       this.$emit('change', '');
+      this.$emit('clear', '');
     },
     onConfirm: function onConfirm() {
       this.$emit('confirm', this.data.value);

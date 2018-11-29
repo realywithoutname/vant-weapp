@@ -1,17 +1,21 @@
+import { link } from '../mixins/link';
 import { VantComponent } from '../common/component';
 
 VantComponent({
   classes: [
     'title-class',
     'label-class',
-    'value-class'
+    'value-class',
+    'right-icon-class'
   ],
+
+  mixins: [link],
 
   props: {
     title: null,
     value: null,
-    url: String,
     icon: String,
+    size: String,
     label: String,
     center: Boolean,
     isLink: Boolean,
@@ -19,10 +23,7 @@ VantComponent({
     clickable: Boolean,
     titleWidth: String,
     customStyle: String,
-    linkType: {
-      type: String,
-      value: 'navigateTo'
-    },
+    arrowDirection: String,
     border: {
       type: Boolean,
       value: true
@@ -32,11 +33,12 @@ VantComponent({
   computed: {
     cellClass(): string {
       const { data } = this;
-      return this.classNames('custom-class', 'van-cell', {
-        'van-hairline': data.border,
+      return this.classNames('van-cell', {
         'van-cell--center': data.center,
         'van-cell--required': data.required,
-        'van-cell--clickable': data.isLink || data.clickable
+        'van-cell--borderless': !data.border,
+        'van-cell--clickable': data.isLink || data.clickable,
+        [`van-cell--${data.size}`]: data.size
       });
     },
 
@@ -47,12 +49,9 @@ VantComponent({
   },
 
   methods: {
-    onClick() {
-      const { url } = this.data;
-      if (url) {
-        wx[this.data.linkType]({ url });
-      }
-      this.$emit('click');
+    onClick(event: Weapp.Event) {
+      this.$emit('click', event.detail);
+      this.jumpLink();
     }
   }
 });
