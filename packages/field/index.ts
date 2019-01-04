@@ -29,6 +29,10 @@ VantComponent({
     customStyle: String,
     useIconSlot: Boolean,
     useButtonSlot: Boolean,
+    showConfirmBar: {
+      type: Boolean,
+      value: true
+    },
     placeholderStyle: String,
     adjustPosition: {
       type: Boolean,
@@ -60,18 +64,6 @@ VantComponent({
     showClear: false
   },
 
-  computed: {
-    inputClass(): string {
-      const { data } = this;
-      return this.classNames('input-class', 'van-field__input', {
-        'van-field--error': data.error,
-        'van-field__textarea': data.type === 'textarea',
-        'van-field__input--disabled': data.disabled,
-        [`van-field__input--${data.inputAlign}`]: data.inputAlign
-      });
-    }
-  },
-
   beforeCreate() {
     this.focused = false;
   },
@@ -80,7 +72,7 @@ VantComponent({
     onInput(event: Weapp.Event) {
       const { value = '' } = event.detail || {};
 
-      this.setData({
+      this.set({
         value,
         showClear: this.getShowClear(value)
       }, () => {
@@ -93,7 +85,7 @@ VantComponent({
       const { value = '', height = 0 } = event.detail || {};
       this.$emit('focus', { value, height });
       this.focused = true;
-      this.setData({
+      this.set({
         showClear: this.getShowClear()
       });
     },
@@ -102,7 +94,7 @@ VantComponent({
       const { value = '', cursor = 0 } = event.detail || {};
       this.$emit('blur', { value, cursor });
       this.focused = false;
-      this.setData({
+      this.set({
         showClear: this.getShowClear()
       });
     },
@@ -119,7 +111,7 @@ VantComponent({
     },
 
     onClear() {
-      this.setData({
+      this.set({
         value: '',
         showClear: this.getShowClear('')
       }, () => {

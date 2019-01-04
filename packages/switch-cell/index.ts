@@ -9,20 +9,22 @@ VantComponent({
     checked: Boolean,
     loading: Boolean,
     disabled: Boolean,
+    activeColor: String,
+    inactiveColor: String,
     size: {
       type: String,
-      value: '26px'
+      value: '24px'
     }
   },
 
   watch: {
     checked(value) {
-      this.setData({ value });
+      this.set({ value });
     }
   },
 
   created() {
-    this.setData({ value: this.data.checked });
+    this.set({ value: this.data.checked });
   },
 
   methods: {

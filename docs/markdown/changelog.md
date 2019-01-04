@@ -1,5 +1,90 @@
 ## 更新日志
 
+
+## [v0.4.10](https://github.com/youzan/vant-weapp/tree/v0.4.10)
+`2018-12-19`
+
+**Improvements**
+
+- Card: 更新样式 [\#1085](https://github.com/youzan/vant-weapp/pull/1085)
+- Card: 更新 thumb-mode 默认值为 aspectFit [\#1039](https://github.com/youzan/vant-weapp/pull/1039)
+- Field: 新增 show-confirm-bar 属性 [\#1040](https://github.com/youzan/vant-weapp/pull/1040)
+- TreeSelect: 更新样式 [\#1084](https://github.com/youzan/vant-weapp/pull/1084)
+- TreeSelect: 支持左侧选项禁用 [\#1084](https://github.com/youzan/vant-weapp/pull/1084)
+- TreeSelect: 增加外部样式类 [\#1084](https://github.com/youzan/vant-weapp/pull/1084)
+- Picker: 新增选择器组件 [\#1083](https://github.com/youzan/vant-weapp/pull/1083)
+- Tag: 新增 text-color 属性 [\#1077](https://github.com/youzan/vant-weapp/pull/1077)
+- Collapse: 更新 content 样式 [\#1069](https://github.com/youzan/vant-weapp/pull/1069)
+- Checkbox: 更新禁用态 label 颜色 [\#1068](https://github.com/youzan/vant-weapp/pull/1068)
+- Checkbox: 优化渲染性能 [\#1057](https://github.com/youzan/vant-weapp/pull/1057)
+- Dialog: 新增 message-align 属性 [\#1067](https://github.com/youzan/vant-weapp/pull/1067)
+- Dialog：新增 overlay、confirm、cancel 事件返回值 picker [\#1047](https://github.com/youzan/vant-weapp/pull/1047)
+- Info: 更新样式 [\#1066](https://github.com/youzan/vant-weapp/pull/1066)
+- Toast: 更新 icon 大小 [\#1064](https://github.com/youzan/vant-weapp/pull/1064)
+- SwitchCell: 新增 active-color、inactive-color 属性 [\#1061](https://github.com/youzan/vant-weapp/pull/1061)
+- Switch: 更新样式 [\#1065](https://github.com/youzan/vant-weapp/pull/1065)
+- Switch: 优化渲染性能 [\#1079](https://github.com/youzan/vant-weapp/pull/1079)
+- Area: 优化渲染性能 [\#1055](https://github.com/youzan/vant-weapp/pull/1055)
+- Cell: 优化渲染性能 [\#1050](https://github.com/youzan/vant-weapp/pull/1050)
+- Button: 优化渲染性能 [\#1049](https://github.com/youzan/vant-weapp/pull/1049)
+
+**Bug Fixes**
+
+- 修复 Collapse 动态修改内容时高度异常 [\#1094](https://github.com/youzan/vant-weapp/pull/1094)
+- 修复 Stepper 在iPad中或修改input高度时输入框样式异常 [\#1086](https://github.com/youzan/vant-weapp/pull/1086)
+- 修复 ActionSheet 动态设置actions时，渲染后button被打散 [\#1070](https://github.com/youzan/vant-weapp/pull/1070)
+
+## [v0.4.9](https://github.com/youzan/vant-weapp/tree/v0.4.9)
+`2018-12-07`
+
+**Improvements**
+
+- Tab: 新增 sticky 属性 [\#1019](https://github.com/youzan/vant-weapp/pull/1019)
+- Tab: 新增 swipeable 属性 [\#1019](https://github.com/youzan/vant-weapp/pull/1019)
+- Rate: 新增 icon-class 外部样式类 [\#1026](https://github.com/youzan/vant-weapp/pull/1026)
+- Icon: 优化内部 setData 次数 [\#1009](https://github.com/youzan/vant-weapp/pull/1009)
+- Popup: 适配 iPhoneX [\#989](https://github.com/youzan/vant-weapp/pull/989)
+- Tabbar: 适配 iPhoneX [\#989](https://github.com/youzan/vant-weapp/pull/989)
+- SubmitBar: 适配 iPhoneX [\#989](https://github.com/youzan/vant-weapp/pull/989)
+- ActionSheet: 适配 iPhoneX [\#989](https://github.com/youzan/vant-weapp/pull/989)
+- GoodsAction: 适配 iPhoneX [\#989](https://github.com/youzan/vant-weapp/pull/989)
+
+**Bug Fixes**
+
+- 修复 Collapse 箭头方向错误 [\#1014](https://github.com/youzan/vant-weapp/pull/1014)
+- 修复 Steps 在开发者工具体验评分中提示选择器错误的问题 [\#1015](https://github.com/youzan/vant-weapp/pull/1015)
+- 修复 Stepper 动态设置 value 时禁用状态未更新的问题 [\#1022](https://github.com/youzan/vant-weapp/pull/1022)
+- 修复 Popup 在 iOS 8 下动画错误的问题 [\#1008](https://github.com/youzan/vant-weapp/pull/1008) [\#1029](https://github.com/youzan/vant-weapp/pull/1029)
+- 修复 Transition 在 iOS 8 下动画错误的问题 [\#1008](https://github.com/youzan/vant-weapp/pull/1008) [\#1029](https://github.com/youzan/vant-weapp/pull/1029)
+- 修复 DatetimePicker 动态设置 type 后报错的问题 [\#1004](https://github.com/youzan/vant-weapp/pull/1004)
+- 修复劫持 setData 方法导致无法适配支付宝小程序的问题 [\#1023](https://github.com/youzan/vant-weapp/pull/1023)
+
+
+## [v0.4.8](https://github.com/youzan/vant-weapp/tree/v0.4.8)
+`2018-12-03`
+
+**Improvements**
+
+- Icon: 增加更多基础图标 [\#980](https://github.com/youzan/vant-weapp/pull/980)
+- Icon: 支持传入图片链接作为图标展示 [\#973](https://github.com/youzan/vant-weapp/pull/973)
+- Tab: 新增 animated 属性 [\#957](https://github.com/youzan/vant-weapp/pull/957)
+- Field: 新增 left-icon 插槽 [\#962](https://github.com/youzan/vant-weapp/pull/962)
+- Field: 新增 focus、blur 事件回调参数 [\#956](https://github.com/youzan/vant-weapp/pull/956)
+- Field: 新增 adjust-position、confirm-hold 属性 [\#955](https://github.com/youzan/vant-weapp/pull/955)
+- NavBar: 新增 border 属性 [\#960](https://github.com/youzan/vant-weapp/pull/960)
+- Dialog: 新增 transition 属性 [\#990](https://github.com/youzan/vant-weapp/pull/990)
+- Rate: 新增 icon、void-icon 属性 [\#961](https://github.com/youzan/vant-weapp/pull/961)
+- 文档：支持在线预览组件效果 [\#967](https://github.com/youzan/vant-weapp/pull/967)
+
+**Bug Fixes**
+
+- 修复 Dialog 直接函数调用时报错的问题 [\#999](https://github.com/youzan/vant-weapp/pull/999)
+- 修复 Field 事件触发顺序 [\#970](https://github.com/youzan/vant-weapp/pull/970)
+- 修复 Icon 模板中 wx:if 拼写错误的问题 [\#985](https://github.com/youzan/vant-weapp/pull/985)
+- 修复 Tabbar 图标未垂直居中的问题 [\#1002](https://github.com/youzan/vant-weapp/pull/1002)
+- 修复 Toast 在 iOS 设备上文字错误换行的问题 [\#959](https://github.com/youzan/vant-weapp/pull/959)
+
+
 ## [v0.4.7](https://github.com/youzan/vant-weapp/tree/v0.4.7)
 `2018-11-26`
 
@@ -30,9 +115,6 @@
 - 修复 Tab 在 iOS8 下的样式兼容性问题 [\#943](https://github.com/youzan/vant-weapp/pull/943)
 - 修复 SwipeCell 在 iOS8 下的样式兼容性问题 [\#944](https://github.com/youzan/vant-weapp/pull/944)
 - 修复 DatetimePicker 设置了 minDate 时初始 value 错误的问题 [\#942](https://github.com/youzan/vant-weapp/pull/942)
-
-
-
 
 
 ## [v0.4.6](https://github.com/youzan/vant-weapp/tree/v0.4.6)

@@ -17,12 +17,12 @@
 ```html
 <van-goods-action>
   <van-goods-action-icon
-    icon="chat"
+    icon="chat-o"
     text="客服"
     bind:click="onClickIcon"
   />
   <van-goods-action-icon
-    icon="cart"
+    icon="cart-o"
     text="购物车"
     bind:click="onClickIcon"
   />
@@ -56,13 +56,19 @@ Page({
 
 ```html
 <van-goods-action>
-  <van-goods-action-icon icon="chat" text="客服" />
-  <van-goods-action-icon icon="cart" text="购物车" info="5" />
-  <van-goods-action-icon icon="shop" text="店铺" />
+  <van-goods-action-icon icon="chat-o" text="客服" />
+  <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+  <van-goods-action-icon icon="shop-o" text="店铺" />
   <van-goods-action-button text="加入购物车" type="warning" />
   <van-goods-action-button text="立即购买" />
 </van-goods-action>
 ```
+
+### GoodsAction API
+
+| 参数 | 说明 | 类型 | 默认值 |
+|-----------|-----------|-----------|-------------|
+| safe-area-inset-bottom | 是否适配iPhoneX | `Boolean` | `true` |
 
 ### GoodsActionIcon API
 

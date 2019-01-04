@@ -11,13 +11,13 @@ function isNumber(value) {
   return /^\d+$/.test(value);
 }
 
-function isSrc(url) {
-  return /^(https?:)?\/\/|data:image/.test(url);
+function range(num: number, min: number, max: number) {
+  return Math.min(Math.max(num, min), max);
 }
 
 export {
   isObj,
   isDef,
-  isSrc,
-  isNumber
+  isNumber,
+  range
 };

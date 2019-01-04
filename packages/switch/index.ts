@@ -19,26 +19,12 @@ VantComponent({
 
   watch: {
     checked(value) {
-      this.setData({ value });
-    }
-  },
-
-  computed: {
-    classes(): string {
-      return this.classNames('van-switch', {
-        'van-switch--on': this.data.checked,
-        'van-switch--disabled': this.data.disabled
-      });
-    },
-
-    style() {
-      const backgroundColor = this.data.checked ? this.data.activeColor : this.data.inactiveColor;
-      return `font-size: ${this.data.size}; ${ backgroundColor ? `background-color: ${backgroundColor}` : '' }`
+      this.set({ value });
     }
   },
 
   created() {
-    this.setData({ value: this.data.checked });
+    this.set({ value: this.data.checked });
   },
 
   methods: {

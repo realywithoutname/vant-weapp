@@ -1,4 +1,5 @@
 import { VantComponent } from '../common/component';
+import { touch } from '../mixins/touch';
 
 type TabItemData = {
   active: boolean;
@@ -8,6 +9,8 @@ type TabItemData = {
 };
 
 VantComponent({
+  mixins: [touch],
+
   relation: {
     name: 'tab',
     type: 'descendant',
@@ -58,7 +61,17 @@ VantComponent({
       type: Number,
       value: 4
     },
-    animated: Boolean
+    animated: Boolean,
+    sticky: Boolean,
+    offsetTop: {
+      type: Number,
+      value: 0
+    },
+    swipeable: Boolean,
+    scrollTop: {
+      type: Number,
+      value: 0
+    }
   },
 
   data: {
@@ -66,19 +79,23 @@ VantComponent({
     lineStyle: '',
     scrollLeft: 0,
     scrollable: false,
-    trackStyle: ''
+    trackStyle: '',
+    wrapStyle: '',
+    position: ''
   },
 
   watch: {
     swipeThreshold() {
-      this.setData({
+      this.set({
         scrollable: this.child.length > this.data.swipeThreshold
       });
     },
     color: 'setLine',
     lineWidth: 'setLine',
     active: 'setActiveTab',
-    animated: 'setTrack'
+    animated: 'setTrack',
+    scrollTop: 'onScroll',
+    offsetTop: 'setWrapStyle'
   },
 
   beforeCreate() {
@@ -94,7 +111,7 @@ VantComponent({
   methods: {
     updateTabs(tabs) {
       tabs = tabs || this.data.tabs;
-      this.setData({
+      this.set({
         tabs,
         scrollable: tabs.length > this.data.swipeThreshold
       });
@@ -121,7 +138,7 @@ VantComponent({
     setActive(active: number) {
       if (active !== this.data.active) {
         this.trigger('change', active);
-        this.setData({ active });
+        this.set({ active });
         this.setActiveTab();
       }
     },
@@ -148,7 +165,7 @@ VantComponent({
 
         left += (rect.width - width) / 2;
 
-        this.setData({
+        this.set({
           lineStyle: `
             width: ${width}px;
             background-color: ${color};
@@ -173,11 +190,12 @@ VantComponent({
       this.getRect('.van-tabs__content').then(rect => {
         const { width } = rect;
 
-        this.setData({
+        this.set({
           trackStyle: `
             width: ${width * this.child.length}px;
-            transform: translateX(${-1 * active * width}px);
-            transition-duration: ${duration}s;
+            left: ${-1 * active * width}px;
+            transition: left ${duration}s;
+            display: flex;
           `
         });
         this.setTabsProps({
@@ -189,7 +207,7 @@ VantComponent({
 
     setTabsProps(props) {
       this.child.forEach(item => {
-        item.setData(props);
+        item.set(props);
       });
     },
 
@@ -204,11 +222,11 @@ VantComponent({
         }
 
         if (data.active !== item.data.active) {
-          item.setData(data);
+          item.set(data);
         }
       });
 
-      this.setData({}, () => {
+      this.set({}, () => {
         this.setLine();
         this.setTrack();
         this.scrollIntoView();
@@ -230,9 +248,103 @@ VantComponent({
 
         this.getRect('.van-tabs__nav').then(navRect => {
           const navWidth = navRect.width;
-          this.setData({
+          this.set({
             scrollLeft: offsetLeft - (navWidth - tabWidth) / 2
           });
+        });
+      });
+    },
+
+    onTouchStart(event: Weapp.TouchEvent) {
+      if (!this.data.swipeable) return;
+
+      this.touchStart(event);
+    },
+
+    onTouchMove(event: Weapp.TouchEvent) {
+      if (!this.data.swipeable) return;
+
+      this.touchMove(event);
+    },
+
+    // watch swipe touch end
+    onTouchEnd() {
+      if (!this.data.swipeable) return;
+
+      const { active, tabs } = this.data;
+
+      const { direction, deltaX, offsetX } = this;
+      const minSwipeDistance = 50;
+
+      if (direction === 'horizontal' && offsetX >= minSwipeDistance) {
+        if (deltaX > 0 && active !== 0) {
+          this.setActive(active - 1);
+        } else if (deltaX < 0 && active !== tabs.length - 1) {
+          this.setActive(active + 1);
+        }
+      }
+    },
+
+    setWrapStyle() {
+      const { offsetTop, position } = this.data;
+      let wrapStyle;
+
+      switch (position) {
+        case 'top':
+          wrapStyle = `
+            top: ${offsetTop}px;
+            position: fixed;
+          `;
+          break;
+        case 'bottom':
+          wrapStyle = `
+            top: auto;
+            bottom: 0;
+          `;
+          break;
+        default:
+          wrapStyle = '';
+      }
+
+      // cut down `set`
+      if (wrapStyle === this.data.wrapStyle) return;
+
+      this.set({
+        wrapStyle
+      });
+    },
+
+    // adjust tab position
+    onScroll(scrollTop) {
+      if (!this.data.sticky) return;
+
+      const { offsetTop } = this.data;
+
+      this.getRect('.van-tabs').then(rect => {
+        const { top, height } = rect;
+
+        this.getRect('.van-tabs__wrap').then(rect => {
+          const { height: wrapHeight } = rect;
+          let position = '';
+
+          if (offsetTop > top + height - wrapHeight) {
+            position = 'bottom';
+          } else if (offsetTop > top) {
+            position = 'top';
+          }
+
+          this.$emit('scroll', {
+            scrollTop: scrollTop + offsetTop,
+            isFixed: position === 'top'
+          });
+
+          if (position !== this.data.position) {
+            this.set({
+              position
+            }, () => {
+              this.setWrapStyle();
+            });
+          }
         });
       });
     }

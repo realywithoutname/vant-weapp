@@ -1,3 +1,6 @@
 import { VantComponent } from '../common/component';
+import { iphonex } from '../mixins/iphonex';
 
-VantComponent();
+VantComponent({
+  mixins: [iphonex]
+});

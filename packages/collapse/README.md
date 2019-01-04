@@ -32,6 +32,11 @@
 Page({
   data: {
     activeNames: ['1']
+  },
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail
+    });
   }
 });
 ```
@@ -57,6 +62,11 @@ Page({
 Page({
   data: {
     activeName: '1'
+  },
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail
+    });
   }
 });
 ```
@@ -66,16 +76,27 @@ Page({
 ```html
 <van-collapse value="{{ activeNames }}">
   <van-collapse-item name="1">
-    <view slot="title">有赞微商城<van-icon name="question" /></view>
+    <view slot="title">有赞微商城<van-icon name="question-o" /></view>
     提供多样店铺模板，快速搭建网上商城
   </van-collapse-item>
-  <van-collapse-item title="有赞零售" name="2">
+  <van-collapse-item title="有赞零售" name="2" icon="shop-o">
     网店吸粉获客、会员分层营销、一机多种收款，告别经营低效和客户流失
   </van-collapse-item>
 </van-collapse>
 ```
 
-
+``` javascript
+Page({
+  data: {
+    activeName: ['1']
+  },
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail
+    });
+  }
+});
+```
 
 ### Collapse API
 
